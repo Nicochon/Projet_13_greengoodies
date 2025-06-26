@@ -1,0 +1,19 @@
+{
+  "name": "cartzilla-dev-tools",
+  "version": "1.0.0",
+  "description": "Tools to help while developing the Cartzilla theme",
+  "main": "index.js",
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite",
+    "watch": "vite build --watch"
+  },
+  "author": "PrestaSafe",
+  "license": "AFL-3.0",
+  "devDependencies": {
+    "sass": "^1.85.1",
+    "vite": "^3.2.11",
+    "vite-plugin-compile-time": "^0.1.2",
+    "vite-plugin-externals": "^0.6.2"
+  }
+}

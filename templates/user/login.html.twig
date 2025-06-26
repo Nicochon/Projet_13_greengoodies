@@ -1,0 +1,37 @@
+{# templates/security/login.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion{% endblock %}
+
+{% block body %}
+
+
+    <div id="register" class="form-container">
+        <div class="form-img">
+            <img src="{{ asset('images/register/conviction-fleurX2.png') }}" alt="fleur"/>
+        </div>
+        <div class="form-wrapper">
+            <div class="form">
+                {% if error %}
+                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
+                <h1>Inscription</h1>
+                <form method="post" action="{{ path('app_login') }}">
+                    <div class="field">
+                        <label for="email">Email</label>
+                        <input class="form-control" type="email" value="{{ last_username }}" name="_username" id="email" required autofocus>
+                    </div>
+                    <div class="field">
+                        <label for="password">Mot de passe</label>
+                        <input class="form-control" type="password" name="_password" id="password" required>
+                    </div>
+
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                    <div class="form-actions">
+                        <button class="btn btn-action" type="submit">Se connecter</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

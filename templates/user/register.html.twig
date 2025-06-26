@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer un compte{% endblock %}
+
+{% block body %}
+    <div id="register" class="form-container">
+        <div class="form-img">
+            <img src="{{ asset('images/register/fleur-verte.png') }}" alt=""/>
+        </div>
+        <div class="form-wrapper">
+            <div class="form">
+                <h1>Inscription</h1>
+                <p>Tous les champs sont obligatoires.</p>
+
+                {{ form_start(form) }}
+
+                <div class="field">
+                    {{ form_label(form.lastName) }}
+                    {{ form_widget(form.lastName) }}
+                    {{ form_errors(form.lastName) }}
+                </div>
+
+                <div class="field">
+                    {{ form_label(form.firstName) }}
+                    {{ form_widget(form.firstName) }}
+                    {{ form_errors(form.firstName) }}
+                </div>
+
+                <div class="field">
+                    {{ form_label(form.email) }}
+                    {{ form_widget(form.email) }}
+                    {{ form_errors(form.email) }}
+                </div>
+
+                <div class="field">
+                    {{ form_label(form.password.first) }}
+                    {{ form_widget(form.password.first) }}
+                    {{ form_errors(form.password.first) }}
+                </div>
+
+                <div class="field">
+                    {{ form_label(form.password.second) }}
+                    {{ form_widget(form.password.second) }}
+                    {{ form_errors(form.password.second) }}
+                </div>
+
+                <div class="form-check">
+                    {{ form_label(form.termsAccepted) }}
+                    {{ form_widget(form.termsAccepted) }}
+                    {{ form_errors(form.termsAccepted) }}
+                </div>
+
+                <div class="form-actions">
+                    <button class="btn btn-action" type="submit">S'inscrire</button>
+                    <a href="#" class="btn-link">Déjà un compte ? Se connecter</a>
+                </div>
+
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

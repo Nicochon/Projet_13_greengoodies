@@ -1,0 +1,52 @@
+@use '../variables' as *;
+
+#account{
+  padding: 7rem 0;
+  background: $cart-background-color;
+  .section-account{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    h4{
+      font-size: 14px;
+    }
+    .section-title{
+      h1{
+        font-size: 20px;
+      }
+    }
+    .section-order, .section-api, .section-delete-account{
+      background: #FFFFFF;
+      width: 35%;
+      margin-bottom: 0.5rem;
+      padding: 3rem;
+    }
+    .section-account-btn{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      background: $btn-add-to-cart-background;
+      height: 80px;
+      .btn-add-to-cart{
+        color: #F6F5F0;
+      }
+    }
+    .section-order{
+      h4{
+        margin-bottom: 1rem;
+      }
+      table{
+        width: 100%;
+        tbody{
+          tr{
+            border-bottom: 1px black solid;
+            td{
+              padding: 1rem 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}

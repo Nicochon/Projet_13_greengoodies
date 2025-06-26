@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+<div id="homepage">
+
+    <div class="banner-container">
+        <div class="banner-description">
+            <div class="block-text">
+                <h1>Bienvenue</h1>
+                <p>Découvrez notre univers de produits durables et éthiques pour une consommation responsable</p>
+                <p>Retrouvez des articles d’hygiène & beauté, des accessoires & boissons et du prêt
+                    à porter</p>
+            </div>
+        </div>
+        <div class="banner-image">
+            <img class="img-responsive" src="{{ asset('images/home/banner-img.png') }}" alt="image banner"/>
+        </div>
+    </div>
+    <div class="products-container">
+        <h2>NOS PRODUITS</h2>
+        <div class="product-grid">
+            {% for product in products %}
+                <div class="product-card">
+                    <div class="img-card">
+                        <img src="{{ asset('images/products/miniature/' ~ product.urlImg ) }}" alt="{{ product.name }}"/>
+                    </div>
+                    <div class="content-card text-center">
+                        <h4>{{ product.name }}</h4>
+                        <p>{{ product.shortDescription }}</p>
+                        <span>{{ product.price|number_format(2, ',', ' ') }}€</span>
+                        <a class="link" href="{{ path('app_product_show', {'id': product.id}) }}">Voir le produit</a>
+                    </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="value-container">
+        <div class="section-conviction">
+            <div class="conviction-content">
+                <div class="value-texte">
+                    <h3>NOTRE CONVICTION</h3>
+                    <p>Chez GreenGoodies, nous croyons en un monde où le commerce peut être synonyme de bien-être pour la planète et ses habitants. Notre mission est de vous proposer une sélection rigoureuse de produits qui allient qualité, durabilité et éthique</p>
+                </div>
+            </div>
+            <div class="conviction-img">
+                <img src="{{ asset('images/home/conviction-fleur.png') }}" alt="fleur"/>
+            </div>
+        </div>
+        <div class="section-value">
+            <div class="value-img">
+                <img src="{{ asset('images/home/pou-green.png') }}" alt="poubelle verte"/>
+            </div>
+            <div class="value-content">
+                <div class="value-texte">
+                    <h3>NOS VALEURS</h3>
+                    <p>Durabilité : Nous sélectionnons soigneusement des produits qui respectent l'environnement et favorisent la durabilité.<br>
+                        Éthique : Nous nous engageons à travailler avec des partenaires et des fournisseurs qui partagent nos valeurs éthiques.<br>
+                        Écologie : Nous encourageons des pratiques respectueuses de l'écosystème et privilégions les matériaux écologiques.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

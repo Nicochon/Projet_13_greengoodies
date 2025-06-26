@@ -1,0 +1,57 @@
+@use '../variables' as *;
+
+#cart{
+  padding: 7rem 0;
+  background: $cart-background-color;
+  .section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .section-title{
+      h1{
+        font-size: 20px;
+      }
+    }
+    .section-btn-delete{
+      width: 35%;
+    }
+    .content-section{
+      display: flex;
+      width: 35%;
+      padding: 3rem;
+      margin-bottom: 0.5rem;
+      background: $cart-items-background-color;
+      .product-image{
+        width: 35%;
+        overflow: hidden;
+        padding-right: 4rem;
+        img{
+          max-width: 100%;
+        }
+      }
+    }
+    .section-total{
+      display: flex;
+      flex-direction: column;
+      align-items: end;
+      padding: 1.5rem;
+      width: 35%;
+      background: $cart-items-background-color;
+      p{
+        margin-bottom: 0;
+      }
+    }
+    .validate-cart{
+      margin-top: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 30%;
+      background: $btn-add-to-cart-background;
+      height: 80px;
+      .btn-add-to-cart{
+        color: #F6F5F0;
+      }
+    }
+  }
+}

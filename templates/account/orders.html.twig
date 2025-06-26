@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes commandes{% endblock %}
+
+{% block body %}
+<div id="account" class="account">
+    <div class="section-account">
+        <div class="section-title">
+            <h1>Mon compte</h1>
+        </div>
+        {% if orders is empty %}
+            <p>Vous n'avez aucune commande.</p>
+        {% else %}
+            <div class="section-order">
+                <h4>Mes commandes</h4>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Référence</th>
+                        <th>Date</th>
+                        <th>Prix</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for order in orders %}
+                        <tr>
+                            <td>{{ order.reference }}</td>
+                            <td>{{ order.createdAt ? order.createdAt|date('d/m/Y') : 'N/A' }}</td>
+                            <td>{{ order.total is defined ? order.total|number_format(2, ',', ' ') ~ ' €' : 'N/A' }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endif %}
+        <div class="section-api">
+            <h4>Mon accès API</h4>
+            <div class="section-account-btn">
+                {% if user.apiEnabled %}
+                    <a href="{{ path('toggle_api_access') }}" class="btn btn-add-to-cart btn-disable-api">Désactiver mon accès API</a>
+                {% else %}
+                    <a href="{{ path('toggle_api_access') }}" class="btn btn-add-to-cart btn-enable-api">Activer mon accès API</a>
+                {% endif %}
+            </div>
+        </div>
+        <div class="section-delete-account">
+            <div class="section-account-btn">
+                <a href="#" class="btn btn-add-to-cart">Supprimer mon compte</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

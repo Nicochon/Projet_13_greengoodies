@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails du produit{% endblock %}
+
+{% block body %}
+    <div id="product" class="product">
+        <div class="product-image">
+            <img src="{{ asset('images/products/' ~ product.urlImg) }}" alt="{{ product.name }}" />
+        </div>
+        <div class="product-info">
+            <div class="product-content">
+                <h1 class="product-name">{{ product.name }}</h1>
+                <p class="product-price">{{ product.price|number_format(2, '.', '') }}€</p>
+                <div class="product-description">
+                    <h2>Description</h2>
+                    {% for paragraph in product.fullDescription|split('\n') %}
+                        <p>{{ paragraph }}</p>
+                    {% endfor %}
+                </div>
+                <div class="add-to-cart">
+                    <a href="{{ path('cart_add', {'id': product.id}) }}" class="btn btn-add-to-cart">Ajouter au panier</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

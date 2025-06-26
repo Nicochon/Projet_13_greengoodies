@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Votre panier{% endblock %}
+
+{% block body %}
+    <div id="cart" class="cart">
+        <div class="section">
+            {% if items is empty %}
+                <h1>Votre panier est vide.</h1>
+            {% else %}
+                <div class="section-title">
+                    <h1>Mon panier</h1>
+                </div>
+                <div class="section-btn-delete">
+                    <a href="{{ path('app_cart_clear') }}" class="btn btn-delete-to-cart">X Vider le panier</a>
+                </div>
+                {% for item in items %}
+                <div class="content-section">
+                    <div class="product-image">
+                        <img src="{{ asset('images/products/miniature/' ~ item.product.urlImg) }}" alt="{{ item.product.name }}" />
+                    </div>
+                    <div class="cart-item">
+                        <h4>{{ item.product.name }}</h4>
+                        <p>Quantité: {{ item.quantity }}</p>
+                        <p>Prix unitaire : {{ item.product.price|number_format(2, ',', ' ') }} €</p>
+                    </div>
+                </div>
+                {% endfor %}
+                <div class="section-total">
+                    <p><strong>Total panier:</strong> {{ items|reduce((carry, item) => carry + (item.product.price * item.quantity), 0)|number_format(2, ',', ' ') }} €</p>
+                    <p>Frais de livraison: Offert</p>
+                </div>
+                <div class="validate-cart">
+                    <a href="{{ path('cart_validate') }}" class="btn btn-add-to-cart">Valider la commande</a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

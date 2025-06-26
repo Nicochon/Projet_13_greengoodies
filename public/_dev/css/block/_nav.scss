@@ -1,0 +1,22 @@
+@use '../variables' as *;
+
+#nav{
+  display: flex;
+  background: $nav-background-color;
+  height: 81px;
+  .nav-container{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    .nav-wrapper{
+      width: 50%;
+      .logo-container{
+        margin-left: 5rem;
+      }
+      .nav-links{
+        display: flex;
+        justify-content: space-around;
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+@use '../variables' as *;
+
+#footer{
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  height: 81px;
+  background: $nav-background-color;
+  .footer-content{
+    margin-right: 5rem;
+  }
+}
