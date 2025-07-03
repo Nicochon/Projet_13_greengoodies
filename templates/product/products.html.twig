@@ -3,13 +3,24 @@
 {% block title %}Détails du produit{% endblock %}
 
 {% block body %}
-    <h1>Liste des produits</h1>
-
-    <ul>
-        {% for product in products %}
-            <li>{{ product.name }}</li>
-        {% else %}
-            <li>Aucun produit trouvé.</li>
-        {% endfor %}
-    </ul>
+    <div id="products">
+        <div class="products-container">
+            <h1>NOS PRODUITS</h1>
+            <div class="product-grid">
+                {% for product in products %}
+                    <div class="product-card">
+                        <div class="img-card">
+                            <img src="{{ asset('images/products/miniature/' ~ product.urlImg ) }}" alt="{{ product.name }}"/>
+                        </div>
+                        <div class="content-card text-center">
+                            <h4>{{ product.name }}</h4>
+                            <p>{{ product.shortDescription }}</p>
+                            <span>{{ product.price|number_format(2, ',', ' ') }}€</span>
+                            <a class="link" href="{{ path('app_product_show', {'id': product.id}) }}">Voir le produit</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 {% endblock %}
