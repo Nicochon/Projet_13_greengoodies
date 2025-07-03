@@ -12,11 +12,17 @@ final class HomeController extends AbstractController
 {
     private ProductService $productService;
 
+    /**
+     * @param ProductService $productService
+     */
     public function __construct(ProductService $productService)
     {
         $this->productService = $productService;
     }
 
+    /**
+     * @return Response
+     */
     #[Route('/', name: 'app_home')]
     public function index(): Response
     {

@@ -21,6 +21,12 @@ final class UserController extends AbstractController
         $this->entityManager = $entityManager;
     }
 
+    /**
+     * @param Request $request
+     * @param UserPasswordHasherInterface $passwordHasher
+     * @param EntityManagerInterface $entityManager
+     * @return Response|JsonResponse
+     */
     #[Route('/auth/register', name: 'app_register', methods: ['GET', 'POST'])]
     public function register(Request $request, UserPasswordHasherInterface $passwordHasher, EntityManagerInterface $entityManager): Response|JsonResponse
     {
@@ -67,6 +73,10 @@ final class UserController extends AbstractController
         ]);
     }
 
+    /**
+     * @param AuthenticationUtils $authenticationUtils
+     * @return Response|JsonResponse
+     */
     #[Route('/login', name: 'app_login', methods: ['GET', 'POST'])]
     public function auth(AuthenticationUtils $authenticationUtils): Response|JsonResponse
     {
@@ -79,6 +89,9 @@ final class UserController extends AbstractController
         ]);
     }
 
+    /**
+     * @return void
+     */
     #[Route(path: '/logout', name: 'app_logout')]
     public function logout(): void
     {

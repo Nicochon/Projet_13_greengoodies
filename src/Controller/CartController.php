@@ -23,6 +23,9 @@ final class CartController extends AbstractController
         $this->cartRepository = $cartRepository;
     }
 
+    /**
+     * @return Response
+     */
     #[Route('/cart', name: 'cart_show')]
     public function index(): Response
     {
@@ -39,7 +42,11 @@ final class CartController extends AbstractController
         ]);
     }
 
-
+    /**
+     * @param int $id
+     * @param EntityManagerInterface $em
+     * @return Response
+     */
     #[Route('/cart/add/{id}', name: 'cart_add')]
     public function add(int $id, EntityManagerInterface $em): Response
     {
@@ -94,6 +101,12 @@ final class CartController extends AbstractController
         ]);
     }
 
+    /**
+     * @param CartRepository $cartRepository
+     * @param EntityManagerInterface $entityManager
+     * @param Security $security
+     * @return Response
+     */
     #[Route('/cart/clear', name: 'app_cart_clear')]
     public function clear(CartRepository $cartRepository, EntityManagerInterface $entityManager, Security $security): Response
     {
@@ -111,6 +124,12 @@ final class CartController extends AbstractController
         return $this->redirectToRoute('cart_show');
     }
 
+    /**
+     * @param CartRepository $cartRepository
+     * @param EntityManagerInterface $em
+     * @param Security $security
+     * @return Response
+     */
     #[Route('/cart/validate', name: 'cart_validate')]
     public function validateCart( CartRepository $cartRepository, EntityManagerInterface $em, Security $security): Response {
         $user = $security->getUser();

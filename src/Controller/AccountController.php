@@ -12,6 +12,11 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class AccountController extends AbstractController
 {
+    /**
+     * @param OrderRepository $orderRepository
+     * @param Security $security
+     * @return Response
+     */
     #[Route('/account', name: 'app_account')]
     public function index(OrderRepository $orderRepository, Security $security): Response
     {
@@ -30,6 +35,11 @@ final class AccountController extends AbstractController
         ]);
     }
 
+    /**
+     * @param EntityManagerInterface $em
+     * @param Security $security
+     * @return RedirectResponse
+     */
     #[Route('/mon-compte/api/toggle', name: 'toggle_api_access')]
     public function toggleApiAccess(EntityManagerInterface $em, Security $security): RedirectResponse {
         $user = $security->getUser();
