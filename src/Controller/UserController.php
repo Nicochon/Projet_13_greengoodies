@@ -32,27 +32,29 @@ final class UserController extends AbstractController
     {
         $user = new User();
 
-        $isJson = str_contains($request->headers->get('Content-Type'), 'application/json');
-
-        if ($isJson) {
-            $data = json_decode($request->getContent(), true);
-
-            if (!$data) {
-                return new JsonResponse(['error' => 'Invalid JSON'], 400);
-            }
-
-            $user->setFirstName($data['first_name'] ?? '');
-            $user->setLastName($data['last_name'] ?? '');
-            $user->setEmail($data['email'] ?? '');
-
-            $hashedPassword = $passwordHasher->hashPassword($user, $data['password'] ?? '');
-            $user->setPassword($hashedPassword);
-
-            $entityManager->persist($user);
-            $entityManager->flush();
-
-            return new JsonResponse(['message' => 'User registered successfully'], 201);
-        }
+//        $isJson = str_contains($request->headers->get('Content-Type'), 'application/json');
+//
+//        if ($isJson) {
+//            $data = json_decode($request->getContent(), true);
+//
+//            if (!$data) {
+//                return new JsonResponse(['error' => 'Invalid JSON'], 400);
+//            }
+//
+//            $user->setFirstName($data['first_name'] ?? '');
+//            $user->setLastName($data['last_name'] ?? '');
+//            $user->setEmail($data['email'] ?? '');
+//            $user->setRoles(['ROLE_USER']);
+//            $user->setApiEnabled(0);
+//
+//            $hashedPassword = $passwordHasher->hashPassword($user, $data['password'] ?? '');
+//            $user->setPassword($hashedPassword);
+//
+//            $entityManager->persist($user);
+//            $entityManager->flush();
+//
+//            return new JsonResponse(['message' => 'User registered successfully'], 201);
+//        }
 
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
@@ -61,6 +63,9 @@ final class UserController extends AbstractController
             $user->setPassword(
                 $passwordHasher->hashPassword($user, $user->getPassword())
             );
+
+            $user->setRoles(['ROLE_USER']);
+            $user->setApiEnabled(0);
 
             $entityManager->persist($user);
             $entityManager->flush();
